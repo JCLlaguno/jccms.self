@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\PostDataTable;
 use App\Models\Post;
+// use App\DataTables\PostDataTable;
 
 class AdminPostsController extends Controller
 {

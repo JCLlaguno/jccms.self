@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminPostsController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminPostsController;
+use App\Http\Controllers\AdminUserscontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/', [AdminController::class, 'index']);
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    
+
+    // posts
     Route::get('/admin/posts', [AdminPostsController::class, 'index'])->name('admin.posts');
 
     Route::get('/admin/posts/create', [AdminPostsController::class, 'createPosts'])->name('admin.posts.create');
@@ -40,4 +42,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin/posts/edit/{id}', [AdminPostsController::class, 'editPosts'])->name('admin.posts.edit');
 
     Route::patch('/admin/posts/update/{post}', [AdminPostsController::class, 'updatePosts'])->name('admin.posts.update');
+
+    // users
+    Route::get('/admin/users', [AdminUsersController::class, 'index'])->name('admin.users');
 });
