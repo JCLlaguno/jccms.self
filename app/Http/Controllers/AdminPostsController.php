@@ -16,7 +16,7 @@ class AdminPostsController extends Controller
 
     public function index() {
 
-        $posts = auth()->user()->posts()->paginate(10);
+        $posts = Post::paginate(4);
 
         return view('admin.posts.index', compact('posts'));
 
@@ -30,14 +30,14 @@ class AdminPostsController extends Controller
 
     public function storePosts(Request $request) {
         
-        $inputs = [
+        $inputs = request()->validate([
 
-            'title' => $request->title,
-            'body' => $request->body
+            'title' => 'required',
+            'body' => 'required'
+        
+        ]);
 
-        ];
-
-        Post::create($inputs);
+        auth()->user()->posts()->create($inputs);
 
         return redirect('/admin/posts')->with('post_added', 'Post has been created');
 
@@ -51,16 +51,14 @@ class AdminPostsController extends Controller
 
     }
 
-    public function updatePosts(Request $request, $id) {
+    public function updatePosts(Post $post) {
 
-        $post = Post::findOrFail($id);
+        $inputs = request()->validate([
 
-        $inputs = [
-
-            'title' => $request->title,
-            'body' => $request->body
-
-        ];
+            'title' => 'required|min:8|max:255',
+            'body' => 'required'
+        
+        ]);
 
         $post->title = $inputs['title'];
         $post->body = $inputs['body'];
@@ -75,7 +73,7 @@ class AdminPostsController extends Controller
 
         $post->delete();
 
-        return redirect()->back();
+        return redirect('/admin/posts');
 
     }
 }

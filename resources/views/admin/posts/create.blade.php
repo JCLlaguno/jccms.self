@@ -1,11 +1,13 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="container my-4">
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Add New Post</li>
-        </ol>
+    <div class="container-fluid">
+        <h1 class="mt-4 mb-3 text-center">Add Posts</h1>
+        {{-- <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item active">Add Posts</li>
+        </ol> --}}
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-10 offset-md-1">
                 <div class="card">
                     <div class="card-header">
                         Add New Post

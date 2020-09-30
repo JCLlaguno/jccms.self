@@ -25,11 +25,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::delete('admin/posts/delete/{post}', [AdminPostsController::class, 'destroy'])->name('admin.posts.delete');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::middleware('auth')->group(function(){
     
-    Route::get('/', function () {
-        return view('admin.index');
-    });
+    Route::get('/', [AdminController::class, 'index']);
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     
@@ -41,5 +39,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/admin/posts/edit/{id}', [AdminPostsController::class, 'editPosts'])->name('admin.posts.edit');
 
-    Route::patch('/admin/posts/update/{id}', [AdminPostsController::class, 'updatePosts'])->name('admin.posts.update');
+    Route::patch('/admin/posts/update/{post}', [AdminPostsController::class, 'updatePosts'])->name('admin.posts.update');
 });
