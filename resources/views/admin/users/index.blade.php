@@ -7,20 +7,15 @@
         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
         <li class="breadcrumb-item active">Posts</li>
     </ol> --}}
-    @if(Session::has('user_added'))
-        <div class="alert alert-success text-center" role="alert">
-            {{Session::get('user_added')}}
-        </div>
-    @elseif(Session::has('user_updated'))
+    @if(Session::has('user_updated'))
         <div class="alert alert-warning">
             {{Session::get('user_updated')}}
         </div>
     @endif
     <div class="card mb-4">
         <div class="card-header">
-            {{-- <i class="fas fa-table mr-1"></i> --}}
-            {{-- All Posts  --}}
-            <a href="" class="btn btn-success">Add New</a>
+            <i class="fas fa-table mr-1"></i>
+            All Users 
         </div>
         <div class="card-body"> 
             @if(count($users) > 0)
@@ -29,6 +24,7 @@
                     <thead>
                         <tr>
                             <th>Id</th>
+                            <th>Photo</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Added</th>
@@ -41,11 +37,12 @@
                         <tbody>
                             <tr>
                                 <td>{{$user->id}}</td>
+                                <td><img width="50" height="50" src="{{$user->photo}}" alt=""></td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->created_at->diffForHumans()}}</td>
                                 <td>
-                                    <a class="btn btn-warning" href="">Edit</a>
+                                    <a class="btn btn-warning" href="{{route('admin.user.edit', $user->id)}}">Edit</a>
                                 </td>
                                 <td>
                                     <form method="post" action="">

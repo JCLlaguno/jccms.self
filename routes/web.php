@@ -45,4 +45,8 @@ Route::middleware('auth')->group(function(){
 
     // users
     Route::get('/admin/users', [AdminUsersController::class, 'index'])->name('admin.users');
+
+    Route::get('/admin/user/edit/{id}', [AdminUsersController::class, 'editUser'])->name('admin.user.edit');
+
+    Route::patch('/admin/user/edit/{id}', [AdminUsersController::class, 'updateUser'])->name('admin.user.update');
 });

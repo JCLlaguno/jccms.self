@@ -17,6 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'photo',
         'name',
         'email',
         'password',
@@ -43,5 +44,17 @@ class User extends Authenticatable
     
     public function posts(){
         return $this->hasMany(Post::class);
+    }
+
+    public function getPhotoAttribute($photo) {
+
+        if($photo == null) :
+
+            return 'http://lorempixel.com/g/400/200';
+
+        endif;
+
+        return '/images/' . $photo;
+
     }
 }
