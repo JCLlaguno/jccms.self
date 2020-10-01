@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="body">Body</label>
-                                <textarea name="body" cols="20" rows="10" class="form-control"></textarea>
+                                <textarea id="textarea" name="body" cols="20" rows="10" class="form-control"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Add Post</button>
                         </form>

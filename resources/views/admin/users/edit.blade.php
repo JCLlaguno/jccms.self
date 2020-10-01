@@ -15,7 +15,7 @@
                             @csrf
                             @method('PATCH')
                             <div class="form-group">
-                                <img class="img-responsive  mx-auto d-block" id="preview-photo" src="https://via.placeholder.com/200x200" style="max-height: 200px">
+                                <img class="img-responsive  mx-auto d-block" id="preview-photo" src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" style="max-height: 200px">
                             </div>
                             <div class="form-group">
                                 <label for="name">Photo</label>
