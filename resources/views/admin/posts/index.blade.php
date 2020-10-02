@@ -15,23 +15,27 @@
         <div class="alert alert-warning">
             {{Session::get('post_updated')}}
         </div>
+    @elseif(Session::get('post_deleted'))
+        <div class="alert alert-danger">
+            {{Session::get('post_deleted')}}
+        </div>
     @endif
     <div class="card mb-4">
         <div class="card-header">
             {{-- <i class="fas fa-table mr-1"></i> --}}
             {{-- All Posts  --}}
-            <a href="{{route('admin.posts.create')}}" class="btn btn-success">Add New</a>
+            <a href="{{route('admin.posts.create')}}" class="btn btn-success btn-sm">Add New</a>
         </div>
         <div class="card-body"> 
             @if(count($posts) > 0)
             <div class="table-responsive">
-                <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Id</th>
+                            <th>Image</th>
                             <th>Author</th>
                             <th>Title</th>
-                            <th>Body</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -41,17 +45,17 @@
                         <tbody>
                             <tr>
                                 <td>{{$post->id}}</td>
+                                <td><img width="30" height="30" src="{{$post->image}}" alt=""></td>
                                 <td>{{$post->user->name}}</td>
                                 <td>{{Str::limit($post->title, 20)}}</td>
-                                <td>{{Str::limit($post->body, 50)}}</td>
                                 <td>
-                                    <a class="btn btn-warning" href="{{route('admin.posts.edit', $post->id)}}">Edit</a>
+                                    <a class="btn btn-warning btn-sm" href="{{route('admin.posts.edit', $post->id)}}">Edit</a>
                                 </td>
                                 <td>
                                     <form method="post" action="{{route('admin.posts.delete', $post)}}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -59,7 +63,7 @@
                         @endforeach
                 </table>
             </div>
-            <div class="pagination justify-content-center">
+            <div class="pagination pagination-sm float-right">
                 {!! $posts->links() !!}
             </div>
             @endif

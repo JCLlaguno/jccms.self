@@ -16,6 +16,13 @@
                         <form  method="POST" action="{{route('admin.posts.store')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
+                                <img class="img-responsive  mx-auto d-block" id="preview-image" src="https://breakthrough.org/wp-content/uploads/2018/10/default-placeholder-image.png" style="max-height: 200px">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Photo</label>
+                                <input type="file" name="image" class="form-control-file" id="image"/>
+                            </div>
+                            <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" name="title" class="form-control"/>
                             </div>
@@ -30,4 +37,20 @@
             </div>
         </div>
     </div>
+@stop
+@section('scripts')
+  <script type="text/javascript">
+    $('#image').change(function(){
+           
+    let reader = new FileReader();
+
+    reader.onload = (e) => { 
+
+      $('#preview-image').attr('src', e.target.result); 
+    }
+
+    reader.readAsDataURL(this.files[0]); 
+  
+   });
+  </script>
 @stop

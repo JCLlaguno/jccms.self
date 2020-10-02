@@ -30,13 +30,13 @@ class AdminUsersController extends Controller
 
         if(trim($request->password) == '') {
 
-            $input = $request->except('password');
+            $inputs = $request->except('password');
 
         } else {
 
-            $input = $request->all();
+            $inputs = $request->all();
 
-            $input['password'] = bcrypt($request->password);
+            $inputs['password'] = bcrypt($request->password);
 
         }
         
@@ -50,11 +50,11 @@ class AdminUsersController extends Controller
 
             $file->move('images', $name);
 
-            $input['photo'] = $name;
+            $inputs['photo'] = $name;
 
         }
 
-        $user->update($input);
+        $user->update($inputs);
 
         return redirect('/admin/users')->with('user_updated', 'User has been updated');
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('https://source.unsplash.com/daily')">
+    <header class="masthead" style="background-image: url('https://source.unsplash.com/random')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">

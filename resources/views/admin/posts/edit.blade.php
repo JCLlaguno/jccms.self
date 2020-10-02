@@ -20,7 +20,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="body">Body</label>
-                                <textarea name="body" cols="20" rows="10" class="form-control">{{$post->body}}</textarea>
+                                <textarea name="body" id="textarea" cols="20" rows="10" class="form-control">{{$post->body}}</textarea>
                             </div>
                             <button type="submit" class="btn btn-warning">Edit Post</button>
                         </form>

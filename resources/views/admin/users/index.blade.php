@@ -20,7 +20,7 @@
         <div class="card-body"> 
             @if(count($users) > 0)
             <div class="table-responsive">
-                <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -37,18 +37,18 @@
                         <tbody>
                             <tr>
                                 <td>{{$user->id}}</td>
-                                <td><img width="50" height="50" src="{{$user->photo}}" alt=""></td>
+                                <td><img width="30" height="30" src="{{$user->photo}}" alt=""></td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->created_at->diffForHumans()}}</td>
                                 <td>
-                                    <a class="btn btn-warning" href="{{route('admin.user.edit', $user->id)}}">Edit</a>
+                                    <a class="btn btn-warning btn-sm" href="{{route('admin.user.edit', $user->id)}}">Edit</a>
                                 </td>
                                 <td>
                                     <form method="post" action="">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -56,7 +56,7 @@
                         @endforeach
                 </table>
             </div>
-            <div class="pagination justify-content-center">
+            <div class="pagination pagination-sm justify-content-center">
                 {!! $users->links() !!}
             </div>
             @endif

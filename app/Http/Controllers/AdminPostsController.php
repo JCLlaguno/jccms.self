@@ -16,7 +16,7 @@ class AdminPostsController extends Controller
 
     public function index() {
 
-        $posts = Post::paginate(4);
+        $posts = Post::paginate(10);
 
         return view('admin.posts.index', compact('posts'));
 
@@ -32,10 +32,22 @@ class AdminPostsController extends Controller
         
         $inputs = request()->validate([
 
+            'image' => 'required',
             'title' => 'required',
             'body' => 'required'
         
         ]);
+
+        // photo
+        if($file = $request->file('image')) {
+
+            $name = time() . $file->getClientOriginalName();
+
+            $file->move('images', $name);
+
+            $inputs['image'] = $name;
+
+        }
 
         auth()->user()->posts()->create($inputs);
 
@@ -73,7 +85,7 @@ class AdminPostsController extends Controller
 
         $post->delete();
 
-        return redirect('/admin/posts');
+        return redirect('/admin/posts')->with('post_deleted', 'Post has been deleted');
 
     }
 }
