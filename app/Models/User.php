@@ -48,13 +48,8 @@ class User extends Authenticatable
 
     public function getPhotoAttribute($photo) {
 
-        if($photo == null) :
-
-            return 'http://lorempixel.com/g/400/200';
-
-        endif;
-
-        return '/images/' . $photo;
+        return $photo == null ? 'https://lorempixel.com/500/250' : '/images/' . $photo;
 
     }
+
 }

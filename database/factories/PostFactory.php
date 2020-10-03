@@ -26,7 +26,7 @@ class PostFactory extends Factory
             // 'title' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
             // 'body' => $this->faker->paragraph($nbSentences = 3, $variableNbSentences = true)
             
-            'user_id'=> 1,
+            'user_id'=> 4,
             'image' => $this->faker->imageUrl($width = 900, $height = 400),
             'title' => $this->faker->sentence,
             'body' => $this->faker->paragraph

@@ -24,8 +24,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::delete('admin/posts/delete/{post}', [AdminPostsController::class, 'destroy'])->name('admin.posts.delete');
-
 Route::middleware('auth')->group(function(){
     
     Route::get('/', [AdminController::class, 'index']);
@@ -43,10 +41,14 @@ Route::middleware('auth')->group(function(){
 
     Route::patch('/admin/posts/update/{post}', [AdminPostsController::class, 'updatePosts'])->name('admin.posts.update');
 
+    Route::delete('admin/posts/delete/{post}', [AdminPostsController::class, 'deletePosts'])->name('admin.posts.delete');
+
     // users
     Route::get('/admin/users', [AdminUsersController::class, 'index'])->name('admin.users');
 
     Route::get('/admin/user/edit/{id}', [AdminUsersController::class, 'editUser'])->name('admin.user.edit');
 
     Route::patch('/admin/user/edit/{id}', [AdminUsersController::class, 'updateUser'])->name('admin.user.update');
+
+    Route::delete('/admin/user/delete/{user}', [AdminUsersController::class, 'deleteUser'])->name('admin.user.delete');
 });

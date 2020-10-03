@@ -8,8 +8,12 @@
         <li class="breadcrumb-item active">Posts</li>
     </ol> --}}
     @if(Session::has('user_updated'))
-        <div class="alert alert-warning">
+        <div class="alert alert-warning text-center">
             {{Session::get('user_updated')}}
+        </div>
+    @elseif(Session::has('user_deleted'))
+        <div class="alert alert-danger text-center">
+            {{Session::get('user_deleted')}}
         </div>
     @endif
     <div class="card mb-4">
@@ -37,7 +41,7 @@
                         <tbody>
                             <tr>
                                 <td>{{$user->id}}</td>
-                                <td><img width="30" height="30" src="{{$user->photo}}" alt=""></td>
+                                <td><img width="30" height="30" src="{{$user->photo ? $user->photo : 'http://lorempixel.com/g/400/200'}}" alt=""></td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->created_at->diffForHumans()}}</td>
@@ -45,7 +49,7 @@
                                     <a class="btn btn-warning btn-sm" href="{{route('admin.user.edit', $user->id)}}">Edit</a>
                                 </td>
                                 <td>
-                                    <form method="post" action="">
+                                    <form method="post" action="{{route('admin.user.delete', $user)}}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>

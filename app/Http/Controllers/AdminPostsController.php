@@ -72,7 +72,26 @@ class AdminPostsController extends Controller
         
         ]);
 
+        // photo
+        if($file = request()->file('image')) {
+           
+            //Finds the old picture and deletes it
+            if($post->image !== null && strpos($post->image, 'lorempixel') == FALSE) {
+                
+                unlink(public_path() . $post->image); 
+
+            }
+
+            $name = time() . $file->getClientOriginalName();
+
+            $file->move('images', $name);
+
+            $post->image = $name;
+
+        }
+
         $post->title = $inputs['title'];
+
         $post->body = $inputs['body'];
 
         $post->update();
@@ -81,7 +100,14 @@ class AdminPostsController extends Controller
 
     }
 
-    public function destroy(Post $post) {
+    public function deletePosts(Post $post) {
+        
+        //Finds the old picture and deletes it
+        if($post->image !== null && strpos($post->image, 'lorempixel') == FALSE) {
+            
+            unlink(public_path() . $post->image); 
+
+        }
 
         $post->delete();
 

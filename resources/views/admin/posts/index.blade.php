@@ -8,15 +8,15 @@
         <li class="breadcrumb-item active">Posts</li>
     </ol> --}}
     @if(Session::has('post_added'))
-        <div class="alert alert-success text-center" role="alert">
+        <div class="alert alert-success text-center">
             {{Session::get('post_added')}}
         </div>
     @elseif(Session::has('post_updated'))
-        <div class="alert alert-warning">
+        <div class="alert alert-warning text-center">
             {{Session::get('post_updated')}}
         </div>
     @elseif(Session::get('post_deleted'))
-        <div class="alert alert-danger">
+        <div class="alert alert-danger text-center">
             {{Session::get('post_deleted')}}
         </div>
     @endif
