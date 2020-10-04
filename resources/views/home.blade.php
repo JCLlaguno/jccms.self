@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('https://source.unsplash.com/random')">
+    <header class="masthead" style="background-image: url('https://source.unsplash.com/random/')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
@@ -22,7 +22,7 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 @foreach($posts as $post)
                     <div class="post-preview">
-                        <a href="post.html">
+                        <a href="{{route('home.post', $post->id)}}">
                         <h2 class="post-title">
                             {{$post->title}}
                         </h2>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminPostsController;
 use App\Http\Controllers\AdminUserscontroller;
@@ -21,12 +22,14 @@ use App\Http\Controllers\AdminUserscontroller;
 // });// 
 
 Auth::routes();
+    
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/home/post/{id}', [HomeController::class, 'post'])->name('home.post');
 
 Route::middleware('auth')->group(function(){
-    
-    Route::get('/', [AdminController::class, 'index']);
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
