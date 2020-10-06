@@ -12,18 +12,16 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 </head>
-<body>
-
-    <section style="padding-top: 60px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    {!! $dataTable->table() !!}
+    <body>
+        <section style="padding-top: 60px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        {!! $dataTable->table() !!}
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    {!! $dataTable->scripts() !!}
-
-</body>
+        </section>
+        {!! $dataTable->scripts() !!}
+    </body>
 </html>

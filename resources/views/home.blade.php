@@ -1,6 +1,6 @@
 @extends('layouts.home')
-
 @section('content')
+
     <!-- Page Header -->
     <header class="masthead" style="background-image: url('https://source.unsplash.com/random/')">
     <div class="overlay"></div>
@@ -38,9 +38,7 @@
                 @endforeach
                 <!-- Pager -->
                 <div class="float-right">{{$posts->links()}}</div>
-            
-            
             </div>
         </div>
     </div>
-@endsection
+@stop
