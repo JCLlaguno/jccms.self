@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 class AdminUsersController extends Controller
@@ -83,6 +84,14 @@ class AdminUsersController extends Controller
                 unlink(public_path() . $user->photo); 
 
             }
+        
+            $user->posts->each(function ($post) {
+                // Storage::delete($post->image);
+
+                unlink(public_path() . $post->image);
+
+                $post->delete();
+            });
 
             $user->delete();
     

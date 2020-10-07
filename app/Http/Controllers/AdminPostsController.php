@@ -8,11 +8,6 @@ use App\Models\Post;
 
 class AdminPostsController extends Controller
 {
-    // public function index(PostDataTable $dataTable) {
-
-    //     return $dataTable->render('posts');
-
-    // }
 
     public function index() {
 
