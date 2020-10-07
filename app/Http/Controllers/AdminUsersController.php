@@ -26,6 +26,15 @@ class AdminUsersController extends Controller
 
     public function updateUser(Request $request, $id) {
 
+        $request->validate([
+
+            'photo' => 'mimes:jpeg,jpg,png,gif',
+            'name' => 'bail|min:2|max:50',
+            // 'email' => 'bail|required|unique:users'
+            // 'password' => 'bail|unique:users|min:8'
+
+        ]);
+
         $user = User::findOrFail($id);
 
         if(trim($request->password) == '') {
@@ -60,7 +69,7 @@ class AdminUsersController extends Controller
 
         $user->update($inputs);
 
-        return redirect('/admin/users')->with('user_updated', 'User has been updated');
+        return redirect('/admin/users')->with('user_updated', 'User has been updated.');
 
     }
 
@@ -77,11 +86,11 @@ class AdminUsersController extends Controller
 
             $user->delete();
     
-            return redirect('/admin/users')->with('user_deleted', 'User has been deleted');
+            return redirect('/admin/users')->with('user_deleted', 'User has been deleted.');
 
         }
             
-        return redirect('/admin/users')->with('user_deleted', 'Logged in user cannot be deleted');
+        return redirect('/admin/users')->with('user_deleted', 'Active user cannot be deleted.');
 
     }
 }

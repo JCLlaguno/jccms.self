@@ -32,9 +32,9 @@ class AdminPostsController extends Controller
         
         $inputs = request()->validate([
 
-            'image' => 'required',
-            'title' => 'required',
-            'body' => 'required'
+            'image' => 'bail|mimes:jpeg,jpg,png,gif',
+            'title' => 'bail|required|min:8|max:255',
+            'body' => 'bail|required|min:8'
         
         ]);
 
@@ -51,7 +51,7 @@ class AdminPostsController extends Controller
 
         auth()->user()->posts()->create($inputs);
 
-        return redirect('/admin/posts')->with('post_added', 'Post has been created');
+        return redirect('/admin/posts')->with('post_added', 'Post has been created.');
 
     }
 
@@ -67,8 +67,9 @@ class AdminPostsController extends Controller
 
         $inputs = request()->validate([
 
-            'title' => 'required|min:8|max:255',
-            'body' => 'required'
+            'image' => 'bail|mimes:jpeg,jpg,png,gif',
+            'title' => 'bail|required|min:8|max:255',
+            'body' => 'bail|required|min:8'
         
         ]);
 
@@ -96,7 +97,7 @@ class AdminPostsController extends Controller
 
         $post->update();
 
-        return redirect('/admin/posts')->with('post_updated', 'Post has been updated');
+        return redirect('/admin/posts')->with('post_updated', 'Post has been updated.');
 
     }
 
@@ -111,7 +112,7 @@ class AdminPostsController extends Controller
 
         $post->delete();
 
-        return redirect('/admin/posts')->with('post_deleted', 'Post has been deleted');
+        return redirect('/admin/posts')->with('post_deleted', 'Post has been deleted.');
 
     }
 }

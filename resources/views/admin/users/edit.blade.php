@@ -19,19 +19,31 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">Photo</label>
-                                <input type="file" name="photo" class="form-control-file" id="photo"/>
+                                <input type="file" name="photo" class="form-control-file @error('photo') is-invalid @enderror" id="photo"/>
+                                @error('photo')
+                                    <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" value="{{$user->name}}" class="form-control"/>
+                                <input type="text" name="name" value="{{$user->name}}" class="form-control @error('name') is-invalid @enderror"/>
+                                @error('name')
+                                    <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" name="email" value="{{$user->email}}" class="form-control"/>
+                                <input type="email" name="email" value="{{$user->email}}" class="form-control @error('email') is-invalid @enderror"/>
+                                @error('email')
+                                    <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="password">New Password</label>
-                                <input type="password" name="password" class="form-control"/>
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"/>
+                                @error('password')
+                                    <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-warning">Edit User</button>
                         </form>

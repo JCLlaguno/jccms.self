@@ -19,15 +19,24 @@
                             </div>
                             <div class="form-group">
                                 <label for="name">Photo</label>
-                                <input type="file" name="image" class="form-control-file" id="image"/>
+                                <input type="file" name="image" class="form-control-file @error('image') is-invalid @enderror" id="image"/>
+                                @error('image')
+                                    <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" value="{{$post->title}}" class="form-control"/>
+                                <input type="text" name="title" value="{{$post->title}}" class="form-control @error('title') is-invalid @enderror"/>
+                                @error('title')
+                                    <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="body">Body</label>
-                                <textarea name="body" id="textarea" cols="20" rows="10" class="form-control">{{$post->body}}</textarea>
+                                <textarea name="body" id="textarea" cols="20" rows="10" class="form-control @error('body') is-invalid @enderror">{{$post->body}}</textarea>
+                                @error('body')
+                                    <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-warning">Edit Post</button>
                         </form>
