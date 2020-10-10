@@ -40,11 +40,11 @@ Route::middleware('auth')->group(function(){
 
     Route::post('/admin/posts/create', [AdminPostsController::class, 'storePosts'])->name('admin.posts.store');
 
-    Route::get('/admin/posts/edit/{id}', [AdminPostsController::class, 'editPosts'])->name('admin.posts.edit');
+    Route::get('/admin/posts/edit/{post}', [AdminPostsController::class, 'editPosts'])->middleware('can:view,post')->name('admin.posts.edit');
 
     Route::patch('/admin/posts/update/{post}', [AdminPostsController::class, 'updatePosts'])->name('admin.posts.update');
 
-    Route::delete('admin/posts/delete/{post}', [AdminPostsController::class, 'deletePosts'])->name('admin.posts.delete');
+    Route::delete('admin/posts/delete/{post}', [AdminPostsController::class, 'deletePosts'])->middleware('can:delete,post')->name('admin.posts.delete');
 
     // users
     Route::get('/admin/users', [AdminUsersController::class, 'index'])->name('admin.users');

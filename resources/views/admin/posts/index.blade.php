@@ -41,26 +41,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($posts as $post)
+                    @foreach($posts as $post)
                         <tbody>
                             <tr>
                                 <td>{{$post->id}}</td>
                                 <td><img width="30" height="30" src="{{$post->image}}" alt=""></td>
                                 <td>{{$post->user->name}}</td>
                                 <td>{{Str::limit($post->title, 20)}}</td>
-                                <td>
-                                    <a class="btn btn-warning btn-sm" href="{{route('admin.posts.edit', $post->id)}}">Edit</a>
-                                </td>
-                                <td>
-                                    <form method="post" action="{{route('admin.posts.delete', $post)}}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                    </form>
-                                </td>
+                                @can('view', $post)
+                                    <td>
+                                        <a class="btn btn-warning btn-sm" href="{{route('admin.posts.edit', $post)}}">Edit</a>
+                                    </td>
+                                    <td>
+                                        <form method="post" action="{{route('admin.posts.delete', $post)}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </td>
+                                @endcan
                             </tr>
                         </tbody>
-                        @endforeach
+                    @endforeach
                 </table>
             </div>
             <div class="pagination pagination-sm float-right">

@@ -50,9 +50,9 @@ class AdminPostsController extends Controller
 
     }
 
-    public function editPosts($id) {
+    public function editPosts(Post $post) {
 
-        $post = Post::findOrFail($id);
+        // $this->authorize('view', $post);
 
         return view('admin.posts.edit', compact('post'));
 
@@ -89,6 +89,8 @@ class AdminPostsController extends Controller
         $post->title = $inputs['title'];
 
         $post->body = $inputs['body'];
+
+        $this->authorize('update', $post);
 
         $post->update();
 
